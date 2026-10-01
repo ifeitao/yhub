@@ -1,0 +1,29 @@
+name: publish
+
+# Publishes the built distributions to PyPI.
+#
+# First publish of a brand-new project name uses a PyPI *pending publisher* (no secrets needed):
+#   PyPI → Account → Publishing → "Add a pending publisher"
+#     PyPI project name: yhub
+#     Owner:             ifeitao
+#     Repository name:   yhub
+#     Workflow name:     publish.yml
+#     Environment name:  pypi
+# After that, publishing a GitHub Release (or running this workflow manually) uploads with OIDC.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  pypi:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write # required for trusted publishing (OIDC)
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv build --no-sources
+      - run: uv publish

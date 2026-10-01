@@ -1,0 +1,35 @@
+[project]
+name = "yhub"
+version = "0.0.1"
+description = "Name reservation for yhub — an always-on local hub for your own machines and services."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Yifeitao" }]
+keywords = ["dashboard", "self-hosted", "homelab", "monitoring", "cli", "mcp"]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Environment :: Console",
+  "Operating System :: MacOS",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: System :: Monitoring",
+]
+
+[project.urls]
+Homepage = "https://github.com/ifeitao/yhub"
+Repository = "https://github.com/ifeitao/yhub"
+Issues = "https://github.com/ifeitao/yhub/issues"
+
+[project.scripts]
+yhub = "yhub.__main__:main"
+
+[build-system]
+# PEP 639 (SPDX license string + license-files) needs hatchling >= 1.27.
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["yhub"]
